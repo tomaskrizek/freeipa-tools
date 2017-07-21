@@ -27,8 +27,7 @@
       tags: always
     - role: git/clone
       git_repo_remove: true
-    - role: git/checkout
-      git_checkout_ref: "{{ git_branch }}"
+      git_version: "{{ git_branch }}"
     - zanata/push
     - zanata/pull
     - git/rebase
@@ -44,8 +43,7 @@
     - git/push
     - role: git/clone
       git_repo_remove: true
-    - role: git/checkout
-      git_checkout_ref: "{{ version_tag }}"
+      git_version: "{{ git_branch }}"
     - git/configure
     - artifacts/prepare
     - tarball
