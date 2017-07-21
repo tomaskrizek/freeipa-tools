@@ -39,3 +39,9 @@
   shell: ./makerpms.sh
   args:
     chdir: "{{ git_repo_local }}"
+
+# FIXME: remove once https://pagure.io/freeipa/issue/6605 is resolved
+- name: "delete generated *.po files"
+  shell: git checkout po/*.po
+  args:
+    chdir: "{{ git_repo_local }}"
