@@ -37,15 +37,17 @@
     - version/set_version
     - role: version/set_git_snapshot
       version_git_snapshot: "no"
-    - version/commit
+    - role: version/commit
+      version_git_snapshot: "no"
     - git/tag
     - role: version/set_git_snapshot
       version_git_snapshot: "yes"
-    - version/commit
+    - role: version/commit
+      version_git_snapshot: "yes"
     - git/push
     - role: git/clone
       git_repo_remove: true
-      git_version: "{{ git_branch }}"
+      git_version: "{{ version.tag }}"
     - git/configure
     - artifacts/prepare
     - tarball

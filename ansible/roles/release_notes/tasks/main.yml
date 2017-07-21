@@ -2,7 +2,7 @@
 - name: generate release notes
   shell: |
     python {{ freeipa_tools }}/release/release-notes.py \
-      {{ version }} \
+      {{ version.name }} \
       $(date +"%F") \
       '{{ prev_version }}' \
       '{{ version_major }}.{{ version_minor }}.0' \
@@ -19,7 +19,7 @@
 - name: generate release notes with links
   shell: |
     python {{ freeipa_tools }}/release/release-notes.py \
-      {{ version }} \
+      {{ version.name }} \
       $(date +"%F") \
       '{{ prev_version }}' \
       '{{ version_major }}.{{ version_minor }}.0' \
