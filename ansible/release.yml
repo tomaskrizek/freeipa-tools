@@ -28,6 +28,7 @@
     - role: git/clone
       git_repo_remove: true
       git_version: "{{ git_branch }}"
+    - git/configure
     - zanata/push
     - zanata/pull
     - git/rebase
