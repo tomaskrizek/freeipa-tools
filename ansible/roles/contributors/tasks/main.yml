@@ -1,6 +1,6 @@
 ---
 - name: "update contributors"
-  shell: "python {{ freeipa_tools }}/update_contributors.py"
+  shell: "python {{ freeipa_tools }}/update-contributors.py"
   args:
     chdir: "{{ git_repo_local }}"
 
