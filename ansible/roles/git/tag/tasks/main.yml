@@ -12,3 +12,6 @@
 
 - debug:
     msg: "{{ out.stdout }}"
+
+- debug:
+    msg: "{{ out.stderr }}"
