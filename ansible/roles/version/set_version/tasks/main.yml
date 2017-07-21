@@ -15,4 +15,4 @@
   lineinfile:
     path: "{{ git_repo_local }}/VERSION.m4"
     regexp: '^define\(IPA_VERSION_RELEASE,'
-    line: 'define(IPA_VERSION_RELEASE, {{ version_release }})'
+    line: 'define(IPA_VERSION_RELEASE, {{ version_patch }})'

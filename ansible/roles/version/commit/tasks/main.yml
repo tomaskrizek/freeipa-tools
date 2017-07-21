@@ -5,7 +5,7 @@
     chdir: "{{ git_repo_local }}"
 
 - name: "git commit"
-  shell: 'git commit -a -s -m "Become IPA {{ version_major }}.{{ version_minor }}.{{version_release }}"'
+  shell: 'git commit -a -s -m "Become IPA {{ version_major }}.{{ version_minor }}.{{version_patch }}"'
   args:
     chdir: "{{ git_repo_local }}"
   when: version_git_snapshot == 'no'
