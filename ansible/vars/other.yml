@@ -1,0 +1,2 @@
+---
+artifacts_dest: "{{ artifacts_location }}/{{ version.name }}"

@@ -3,6 +3,7 @@
   vars_files:
     - vars/version.yml
     - vars/git.yml
+    - vars/other.yml
   vars_prompt:
     - name: version_major
       prompt: "MAJOR version to release (MAJOR.minor.patch)"

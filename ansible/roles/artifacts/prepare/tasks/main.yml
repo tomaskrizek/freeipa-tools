@@ -1,9 +1,4 @@
 ---
-- name: set artifacts_dest fact
-  set_fact:
-    artifacts_dest: "{{ artifacts_location }}/{{ version }}"
-  tags: always
-
 - name: remove artifacts_dest directory
   file:
     path: "{{ artifacts_dest }}"
