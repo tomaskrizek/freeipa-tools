@@ -1,5 +1,15 @@
 ---
-- include: variables.yml
+- name: set artifacts_dest fact
+  set_fact:
+    artifacts_dest: "{{ artifacts_location }}/{{ version }}"
   tags: always
-- include: directory.yml
-  tags: remove_artifacts_dir
+
+- name: remove artifacts_dest directory
+  file:
+    path: "{{ artifacts_dest }}"
+    state: absent
+
+- name: create artifacts_dest directory
+  file:
+    path: "{{ artifacts_dest }}"
+    state: directory

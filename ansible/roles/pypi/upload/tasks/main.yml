@@ -1,2 +1,21 @@
 ---
-- include: test_pypi.yml
+- name: upload wheels to Test PyPI
+  shell: twine upload {{ artifacts_dest }}/wheels/* -r testpypi
+
+- name: test installation from Test PyPI
+  shell: pip install --upgrade -i https://testpypi.python.org/pypi --user ipapython
+  register: pypi_res
+
+- name: show pip install output
+  debug:
+    var: pypi_res.stdout
+
+- name: prompt for confirmation
+  pause:
+    prompt: |
+      Check if installation from TestPYPI succeeded.
+
+      Ctrl-C A to abort, Enter to continue
+
+- name: upload to production
+  shell: twine upload {{ artifacts_dest }}/wheels/*

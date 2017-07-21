@@ -1,2 +1,10 @@
 ---
-- include: fetch_rebase.yml
+- name: "fetch remote branch"
+  shell: git fetch origin
+  args:
+    chdir: "{{ git_repo_local }}"
+
+- name: "rebase on remote branch"
+  shell: "git rebase origin/{{ git_branch }}"
+  args:
+    chdir: "{{ git_repo_local }}"

@@ -1,6 +1,41 @@
 ---
-- include: pull.yml
-- include: new_language.yml
-- include: remove_empty.yml
-- include: commit.yml
-- include: verify_build.yml
+- name: "pull translation from zanata"
+  shell: zanata-cli -B pull
+  args:
+    chdir: "{{ git_repo_local }}"
+
+- name: "check if new lang was added"
+  shell: git ls-files --others --exclude-standard | grep 'po/.*po'
+  args:
+    chdir: "{{ git_repo_local }}"
+  register: new_lang
+  ignore_errors: true
+
+- fail:
+    msg: "new language added from zanata, please add it manually to LINGUAS file"
+  when: new_lang.rc == 0
+
+- name: "remove emptry translation from *.po"
+  shell: make strip-po
+  args:
+    chdir: "{{ git_repo_local }}/po"
+
+- name: "add po files to git"
+  shell: git add po/
+  args:
+    chdir: "{{ git_repo_local }}"
+
+- name: "git commit"
+  shell: git commit -s -m "Update translations"
+  args:
+    chdir: "{{ git_repo_local }}"
+
+- name: "clean git repo"
+  shell: git clean -dfx
+  args:
+    chdir: "{{ git_repo_local }}"
+
+- name: "build FreeIPA to verify translations are correct"
+  shell: ./makerpms.sh
+  args:
+    chdir: "{{ git_repo_local }}"

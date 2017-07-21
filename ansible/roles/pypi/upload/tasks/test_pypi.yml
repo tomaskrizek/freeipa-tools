@@ -1,3 +1,0 @@
----
-- name: upload wheels to Test PyPI
-  shell: twine upload {{ artifacts_dest }}/wheels/* -r testpypi

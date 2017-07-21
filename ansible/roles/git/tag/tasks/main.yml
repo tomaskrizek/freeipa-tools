@@ -1,3 +1,14 @@
 ---
-- include: create_signed_tag.yml
-- include: verify_tag.yml
+- name: "create signed tag"
+  shell: 'git tag -s -m "tagging IPAv{{ version_major }} {{ version }}" {{ version_tag }}'
+  args:
+    chdir: "{{ git_repo_local}}"
+
+- name: "verify GPG tag"
+  shell: 'git verify-tag {{ version_tag }}'
+  args:
+    chdir: "{{ git_repo_local }}"
+  register: out
+
+- debug:
+    msg: "{{ out.stdout }}"

@@ -1,3 +1,17 @@
 ---
-- include: remove.yml
-- include: clone.yml
+- name: "remove git repo"
+  file:
+    path: "{{ git_repo_local }}"
+    state: absent
+  when: git_repo_remove
+
+- name: "clone git repo"
+  git:
+    repo: "{{ git_repo_https }}"
+    dest: "{{ git_repo_local }}"
+    force: yes
+
+- name: "add upstream remote"
+  shell: "git remote add upstream {{ git_repo_ssh }}"
+  args:
+    chdir: "{{ git_repo_local }}"

@@ -1,2 +1,10 @@
 ---
-- include: configure.yml
+- name: "run autoreconf"
+  shell: autoreconf -fiv
+  args:
+    chdir: "{{ git_repo_local }}"
+
+- name: "run configure"
+  shell: ./configure
+  args:
+    chdir: "{{ git_repo_local }}"

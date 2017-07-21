@@ -1,4 +1,29 @@
 ---
-- include: make.yml
-- include: sign.yml
-- include: collect.yml
+- name: create tarball
+  shell: make dist
+  args:
+    chdir: "{{ git_repo_local }}"
+
+- name: create gpg signature
+  shell: gpg2 --batch --yes --armor --detach-sign freeipa-{{ version }}.tar.gz
+  args:
+    chdir: "{{ git_repo_local }}"
+
+- name: verify gpg signature
+  shell: gpg2 --verify freeipa-{{ version }}.tar.gz.asc
+  args:
+    chdir: "{{ git_repo_local }}"
+  register: tarball_verify
+
+- name: show tarball signature
+  debug:
+    var: tarball_verify.stdout_lines
+
+- name: show tarball signature
+  debug:
+    var: tarball_verify.stderr_lines
+
+- name: copy tarball and signature
+  shell: "cp freeipa-{{ version }}.tar.gz* {{ artifacts_dest }}"
+  args:
+    chdir: "{{ git_repo_local }}"
