@@ -3,16 +3,16 @@
   lineinfile:
     path: "{{ git_repo_local }}/VERSION.m4"
     regexp: '^define\(IPA_VERSION_MAJOR,'
-    line: 'define(IPA_VERSION_MAJOR, {{ version_major }})'
+    line: 'define(IPA_VERSION_MAJOR, {{ version.major }})'
 
 - name: "set minor version"
   lineinfile:
     path: "{{ git_repo_local }}/VERSION.m4"
     regexp: '^define\(IPA_VERSION_MINOR,'
-    line: 'define(IPA_VERSION_MINOR, {{ version_minor }})'
+    line: 'define(IPA_VERSION_MINOR, {{ version.minor }})'
 
 - name: "set release version"
   lineinfile:
     path: "{{ git_repo_local }}/VERSION.m4"
     regexp: '^define\(IPA_VERSION_RELEASE,'
-    line: 'define(IPA_VERSION_RELEASE, {{ version_patch }})'
+    line: 'define(IPA_VERSION_RELEASE, {{ version.patch }})'

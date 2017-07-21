@@ -1,11 +1,11 @@
 ---
 - name: "create signed tag"
-  shell: 'git tag -s -m "tagging IPAv{{ version_major }} {{ version }}" {{ version_tag }}'
+  shell: 'git tag -s -m "tagging IPAv{{ version.major }} {{ version.name }}" {{ version.tag }}'
   args:
     chdir: "{{ git_repo_local}}"
 
 - name: "verify GPG tag"
-  shell: 'git verify-tag {{ version_tag }}'
+  shell: 'git verify-tag {{ version.tag }}'
   args:
     chdir: "{{ git_repo_local }}"
   register: out

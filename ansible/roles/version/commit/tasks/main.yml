@@ -5,13 +5,13 @@
     chdir: "{{ git_repo_local }}"
 
 - name: "git commit"
-  shell: 'git commit -a -s -m "Become IPA {{ version_major }}.{{ version_minor }}.{{version_patch }}"'
+  shell: 'git commit -a -s -m "Become IPA {{ version.major }}.{{ version.minor }}.{{ version.patch }}"'
   args:
     chdir: "{{ git_repo_local }}"
   when: version_git_snapshot == 'no'
 
 - name: "git commit"
-  shell: 'git commit -a -s -m "{{ version_major }}.{{ version_minor}} set back to git snapshot"'
+  shell: 'git commit -a -s -m "{{ version.major }}.{{ version.minor }} set back to git snapshot"'
   args:
     chdir: "{{ git_repo_local }}"
   when: version_git_snapshot == 'yes'

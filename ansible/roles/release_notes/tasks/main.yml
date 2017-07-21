@@ -4,10 +4,10 @@
     python {{ freeipa_tools }}/release/release-notes.py \
       {{ version.name }} \
       $(date +"%F") \
-      '{{ prev_version }}' \
-      '{{ version_major }}.{{ version_minor }}.0' \
-      '{{ prev_version_tag }}..{{ version_tag }}' \
-      'FreeIPA {{ version }}' \
+      '{{ prev_version.name }}' \
+      '{{ version.major }}.{{ version.minor }}.0' \
+      '{{ prev_version.tag }}..{{ version.tag }}' \
+      'FreeIPA {{ version.name }}' \
       --token-file {{ pagure_token_file }}
   register: release_notes
 
@@ -21,10 +21,10 @@
     python {{ freeipa_tools }}/release/release-notes.py \
       {{ version.name }} \
       $(date +"%F") \
-      '{{ prev_version }}' \
-      '{{ version_major }}.{{ version_minor }}.0' \
-      '{{ prev_version_tag }}..{{ version_tag }}' \
-      'FreeIPA {{ version }}' \
+      '{{ prev_version.name }}' \
+      '{{ version.major }}.{{ version.minor }}.0' \
+      '{{ prev_version.tag }}..{{ version.tag }}' \
+      'FreeIPA {{ version.name }}' \
       --token-file {{ pagure_token_file }} \
       --links
   register: release_notes
